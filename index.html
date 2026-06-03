@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="color-scheme" content="light only"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sifr Capital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background-color: #ffffff !important; color-scheme: light only; }
+html { font-size: 18px; scroll-behavior: smooth; }
+body {
+  background: #ffffff;
+  color: #111111;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 5vw;
+  background: #ffffff;
+}
+
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 1.1rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #B8944A;
+  text-decoration: none;
+}
+
+.nav-links { display: flex; gap: 2.5rem; }
+
+.nav-link {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #111;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-link:hover { color: #B8944A; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 5vw 8vh;
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(4rem, 9vw, 11rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: #B8944A;
+  margin-bottom: 3rem;
+}
+h1 em { font-style: italic; }
+
+.hero-meta {
+  border-top: 1px solid #B8944A;
+  padding-top: 2rem;
+  display: flex;
+  gap: 5vw;
+  align-items: baseline;
+}
+
+.meta-item .val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 300;
+  color: #B8944A;
+  display: block;
+  line-height: 1;
+}
+.meta-item .key {
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #111;
+  display: block;
+  margin-top: 0.3rem;
+}
+
+/* SECTIONS */
+.section {
+  padding: 8rem 5vw;
+  border-top: 1px solid #B8944A;
+}
+
+.section-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #B8944A;
+  display: block;
+  margin-bottom: 4rem;
+}
+
+h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(2.5rem, 4vw, 5rem);
+  line-height: 1.0;
+  color: #B8944A;
+  margin-bottom: 0;
+}
+h2 em { font-style: italic; }
+
+/* PLATFORM */
+.arm-block {
+  padding: 4rem 0;
+  border-top: 1px solid #B8944A;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 6vw;
+  align-items: start;
+}
+.arm-block:first-of-type { margin-top: 4rem; }
+
+.arm-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #B8944A;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.arm-block h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(1.6rem, 2.4vw, 2.8rem);
+  line-height: 1.1;
+  color: #B8944A;
+}
+
+.arm-body p {
+  font-size: 0.92rem;
+  line-height: 1.9;
+  color: #111;
+  margin-bottom: 1.8rem;
+}
+
+.arm-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.arm-list li {
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* VERTICALS */
+.vert-list { display: flex; flex-direction: column; margin-top: 4rem; }
+
+.vert-row {
+  padding: 2rem 0;
+  border-top: 1px solid #B8944A;
+  display: grid;
+  grid-template-columns: 14rem 1fr;
+  gap: 4vw;
+  align-items: baseline;
+}
+.vert-row:last-child { border-bottom: 1px solid #B8944A; }
+
+.vert-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #B8944A;
+}
+
+.vert-items {
+  font-size: 0.85rem;
+  color: #111;
+  line-height: 1.9;
+}
+
+/* PHYSICIAN SYNDICATE */
+.syndicate-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8vw;
+  margin-top: 4rem;
+  align-items: start;
+}
+
+.syndicate-left p {
+  font-size: 0.92rem;
+  line-height: 1.9;
+  color: #111;
+  margin-top: 1.5rem;
+}
+
+.synd-items { display: flex; flex-direction: column; }
+
+.synd-row {
+  padding: 1.8rem 0;
+  border-top: 1px solid #B8944A;
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 1.5rem;
+}
+.synd-row:last-child { border-bottom: 1px solid #B8944A; }
+
+.synd-n {
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  color: #B8944A;
+  padding-top: 0.2rem;
+}
+
+.synd-row h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 1.15rem;
+  color: #B8944A;
+  margin-bottom: 0.3rem;
+}
+
+.synd-row p {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: #555;
+}
+
+/* CONTACT */
+.contact-sub {
+  font-size: 0.9rem;
+  line-height: 1.9;
+  color: #111;
+  margin-bottom: 3rem;
+  margin-top: 1.5rem;
+  max-width: 480px;
+}
+
+.contact-form { display: flex; flex-direction: column; gap: 1.2rem; max-width: 680px; }
+
+.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.f-group { display: flex; flex-direction: column; gap: 0.35rem; }
+
+.f-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.f-input, .f-select, .f-textarea {
+  width: 100%;
+  background: #fff;
+  border: none;
+  border-bottom: 1px solid #B8944A;
+  color: #111;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  padding: 0.6rem 0;
+  outline: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+.f-input::placeholder, .f-textarea::placeholder { color: #ccc; }
+.f-select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='4'%3E%3Cpath d='M0 0l4 4 4-4z' fill='%23B8944A'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0 center;
+  background-color: #fff;
+}
+.f-select option { background: #fff; color: #111; }
+.f-textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+
+.f-submit {
+  width: 100%;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #B8944A;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 0.5rem;
+}
+.f-submit:hover { background: #D4AF6A; }
+
+.f-note {
+  font-size: 0.68rem;
+  color: #aaa;
+  text-align: center;
+  line-height: 1.7;
+}
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 0.88rem;
+  color: #B8944A;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid #B8944A;
+  padding: 2rem 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #B8944A;
+}
+
+.footer-copy { font-size: 0.65rem; letter-spacing: 0.08em; color: #aaa; }
+
+.fade {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade.vis { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 860px) {
+  .arm-block, .syndicate-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .vert-row { grid-template-columns: 1fr; gap: 0.4rem; }
+  .f-row { grid-template-columns: 1fr; }
+  .hero-meta { flex-wrap: wrap; gap: 2rem; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#">Sifr Capital</a>
+  <div class="nav-links">
+    <a class="nav-link" href="#platform">Platform</a>
+    <a class="nav-link" href="#verticals">Verticals</a>
+    <a class="nav-link" href="#physicians">Physicians</a>
+    <a class="nav-link" href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1 class="fade">From <em>zero</em><br>to frontier.</h1>
+  <div class="hero-meta fade">
+    <div class="meta-item">
+      <span class="val">$2B</span>
+      <span class="key">Team exits</span>
+    </div>
+    <div class="meta-item">
+      <span class="val">$500K–$5M</span>
+      <span class="key">Check size</span>
+    </div>
+    <div class="meta-item">
+      <span class="val">Series A+</span>
+      <span class="key">Entry stage</span>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section class="section" id="platform">
+  <span class="section-label fade">Platform</span>
+
+  <div class="arm-block fade">
+    <div>
+      <span class="arm-label">Arm I</span>
+      <h3>Company Creation<br>and Incubation</h3>
+    </div>
+    <div class="arm-body">
+      <p>We spin technologies out of universities and labs, de-risk the early science in our own facilities, and build from first principles. Our team takes active roles in every company we build.</p>
+      <ul class="arm-list">
+        <li>Development roadmap and regulatory pathway design</li>
+        <li>PK/PD, biomarker strategy, preclinical architecture</li>
+        <li>IP licensing, patent strategy, clean cap table design</li>
+        <li>Active operator roles: CSO, CMO, Board</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="arm-block fade">
+    <div>
+      <span class="arm-label">Arm II</span>
+      <h3>SPV-Based<br>Investments</h3>
+    </div>
+    <div class="arm-body">
+      <p>We back select external opportunities at Series A and beyond through targeted SPVs. We co-invest our own capital alongside the family office on every deal and hold a board seat for governance.</p>
+      <ul class="arm-list">
+        <li>Series A onward, technically validated platforms only</li>
+        <li>$500K to $5M per deal</li>
+        <li>Co-investment alongside the family office on every deal</li>
+        <li>Board seat on every investment</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- VERTICALS -->
+<section class="section" id="verticals">
+  <span class="section-label fade">Verticals</span>
+  <div class="vert-list fade">
+    <div class="vert-row">
+      <span class="vert-name">Healthcare and<br>Life Sciences</span>
+      <span class="vert-items">Drugs · Devices · Diagnostics · Neurotech · Longevity · Research tools</span>
+    </div>
+    <div class="vert-row">
+      <span class="vert-name">Deep<br>Technology</span>
+      <span class="vert-items">AI · Quantum · Synthetic biology</span>
+    </div>
+    <div class="vert-row">
+      <span class="vert-name">Planetary<br>Health</span>
+      <span class="vert-items">Defense · Aerospace biotech · Energy · Critical minerals · Agriculture · Environmental services</span>
+    </div>
+  </div>
+</section>
+
+<!-- PHYSICIAN SYNDICATE -->
+<section class="section" id="physicians">
+  <span class="section-label fade">Physician Syndicate</span>
+  <div class="syndicate-grid">
+    <div class="syndicate-left fade">
+      <h2>A seat at<br>the <em>table</em>.</h2>
+      <p>We are building a physician syndicate to give physicians direct access to our deals and a genuine working role in the companies we back. Deal by deal, no blind pool.</p>
+    </div>
+    <div class="synd-items fade">
+      <div class="synd-row">
+        <span class="synd-n">01</span>
+        <div>
+          <h4>Direct deal access</h4>
+          <p>Deal-by-deal participation through targeted SPVs. No commitment to a fund.</p>
+        </div>
+      </div>
+      <div class="synd-row">
+        <span class="synd-n">02</span>
+        <div>
+          <h4>Governance roles</h4>
+          <p>Syndicate members have the opportunity to step into board seats and advisory positions within portfolio companies.</p>
+        </div>
+      </div>
+      <div class="synd-row">
+        <span class="synd-n">03</span>
+        <div>
+          <h4>Clinical strategy</h4>
+          <p>Help founders navigate reimbursement, trial design, and clinical positioning from the start.</p>
+        </div>
+      </div>
+      <div class="synd-row">
+        <span class="synd-n">04</span>
+        <div>
+          <h4>Aligned economics</h4>
+          <p>Capital deployed alongside the Sifr team and the family office on every deal.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <span class="section-label fade">Contact</span>
+  <h2 class="fade">Get in<br><em>touch</em>.</h2>
+  <p class="contact-sub fade">For investors, physicians, and founders. All inquiries reviewed in confidence.</p>
+  <div class="contact-form fade">
+    <div class="f-row">
+      <div class="f-group">
+        <label class="f-label">Name</label>
+        <input type="text" class="f-input" placeholder="Full name"/>
+      </div>
+      <div class="f-group">
+        <label class="f-label">Email</label>
+        <input type="email" class="f-input" placeholder="you@domain.com"/>
+      </div>
+    </div>
+    <div class="f-row">
+      <div class="f-group">
+        <label class="f-label">I am a</label>
+        <select class="f-select">
+          <option value="">Select...</option>
+          <option>Investor / Family Office</option>
+          <option>Physician</option>
+          <option>Founder</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="f-group">
+        <label class="f-label">Specialty or firm</label>
+        <input type="text" class="f-input" placeholder="Specialty or firm"/>
+      </div>
+    </div>
+    <div class="f-group">
+      <label class="f-label">Message</label>
+      <textarea class="f-textarea" placeholder="What brings you here?"></textarea>
+    </div>
+    <button class="f-submit" id="submitBtn" onclick="handleSubmit(event)">Send</button>
+    <p class="f-note">We respond within five business days.</p>
+    <div class="form-success" id="formSuccess">Message received. We will be in touch shortly.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Sifr Capital</div>
+  <div class="footer-copy">© 2025 Sifr Capital. All rights reserved.</div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('vis'), i * 60);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.05 });
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = 'Sent';
+  btn.disabled = true;
+  btn.style.background = '#ccc';
+  document.getElementById('formSuccess').style.display = 'block';
+}
+</script>
+</body>
+</html>
