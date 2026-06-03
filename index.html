@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="color-scheme" content="light only"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sifr Capital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background-color: #f4ede0 !important; color-scheme: light only; }
+html { font-size: 18px; scroll-behavior: smooth; }
+body {
+  background: #f4ede0;
+  color: #1c1814;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 5vw;
+  background: #f4ede0;
+}
+
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 1.2rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #B8944A;
+  text-decoration: none;
+}
+
+.nav-links { display: flex; gap: 2.5rem; }
+
+.nav-link {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #1c1814;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-link:hover { color: #B8944A; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 5vw 8vh;
+}
+
+.hero-kicker {
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #B8944A;
+  margin-bottom: 1.8rem;
+  display: block;
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: clamp(4.5rem, 9.5vw, 12rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: #B8944A;
+  margin-bottom: 2rem;
+}
+h1 em { font-style: italic; }
+
+.hero-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  line-height: 1.85;
+  color: #555;
+  max-width: 560px;
+  margin-bottom: 3rem;
+}
+
+.hero-meta {
+  border-top: 1px solid rgba(184,148,74,0.4);
+  padding-top: 2rem;
+  display: flex;
+  gap: 5vw;
+  align-items: baseline;
+}
+
+.meta-item .val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.3rem;
+  font-weight: 400;
+  color: #B8944A;
+  display: block;
+  line-height: 1;
+}
+.meta-item .key {
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #1c1814;
+  display: block;
+  margin-top: 0.3rem;
+}
+.meta-item .sub {
+  font-size: 0.72rem;
+  color: #888;
+  display: block;
+  margin-top: 0.15rem;
+}
+
+/* SECTIONS */
+.section {
+  padding: 6rem 5vw;
+  border-top: 1px solid rgba(184,148,74,0.4);
+}
+
+.section-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #B8944A;
+  display: block;
+  margin-bottom: 2.5rem;
+}
+
+h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: clamp(2.8rem, 4.2vw, 5.5rem);
+  line-height: 1.0;
+  color: #B8944A;
+  margin-bottom: 0;
+}
+h2 em { font-style: italic; }
+
+/* PLATFORM */
+.arm-block {
+  padding: 2.5rem 0;
+  border-top: 1px solid rgba(184,148,74,0.4);
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 6vw;
+  align-items: start;
+}
+.arm-block:first-of-type { margin-top: 2.5rem; }
+
+.arm-label {
+  font-size: 0.82rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #B8944A;
+  display: block;
+  margin-bottom: 0.7rem;
+}
+
+.arm-block h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 2.6vw, 3rem);
+  line-height: 1.1;
+  color: #B8944A;
+}
+
+.arm-body p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #1c1814;
+  margin-bottom: 1.2rem;
+}
+
+.arm-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.arm-list li {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* VERTICALS */
+.vert-list { display: flex; flex-direction: column; margin-top: 2.5rem; }
+
+.vert-row {
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(184,148,74,0.4);
+  display: grid;
+  grid-template-columns: 14rem 1fr;
+  gap: 4vw;
+  align-items: baseline;
+}
+.vert-row:last-child { border-bottom: 1px solid rgba(184,148,74,0.4); }
+
+.vert-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #B8944A;
+}
+
+.vert-items {
+  font-size: 1rem;
+  color: #1c1814;
+  line-height: 1.8;
+}
+
+/* PHYSICIAN SYNDICATE */
+.syndicate-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8vw;
+  margin-top: 2.5rem;
+  align-items: start;
+}
+
+.syndicate-left p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #1c1814;
+  margin-top: 1.5rem;
+}
+
+.synd-items { display: flex; flex-direction: column; }
+
+.synd-row {
+  padding: 1.4rem 0;
+  border-top: 1px solid rgba(184,148,74,0.4);
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 1.5rem;
+}
+.synd-row:last-child { border-bottom: 1px solid rgba(184,148,74,0.4); }
+
+.synd-n {
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  color: #B8944A;
+  padding-top: 0.2rem;
+}
+
+.synd-row h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 1.3rem;
+  color: #B8944A;
+  margin-bottom: 0.3rem;
+}
+
+.synd-row p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #555;
+}
+
+/* CONTACT */
+.contact-sub {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #1c1814;
+  margin-bottom: 2rem;
+  margin-top: 1.5rem;
+  max-width: 480px;
+}
+
+.contact-form { display: flex; flex-direction: column; gap: 1.2rem; max-width: 680px; }
+
+.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.f-group { display: flex; flex-direction: column; gap: 0.35rem; }
+
+.f-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.f-input, .f-select, .f-textarea {
+  width: 100%;
+  background: #f4ede0;
+  border: none;
+  border-bottom: 1px solid rgba(184,148,74,0.4);
+  color: #1c1814;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  padding: 0.6rem 0;
+  outline: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+.f-input::placeholder, .f-textarea::placeholder { color: #ccc; }
+.f-select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='4'%3E%3Cpath d='M0 0l4 4 4-4z' fill='%23B8944A'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0 center;
+  background-color: #fff;
+}
+.f-select option { background: #f4ede0; color: #1c1814; }
+.f-textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+
+.f-submit {
+  width: 100%;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #B8944A;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 0.5rem;
+}
+.f-submit:hover { background: #D4AF6A; }
+
+.f-note {
+  font-size: 0.68rem;
+  color: #aaa;
+  text-align: center;
+  line-height: 1.7;
+}
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 0.88rem;
+  color: #B8944A;
+}
+
+/* PORTFOLIO TABS */
+.port-tabs {
+  display: flex;
+  gap: 2.5rem;
+  border-bottom: 1px solid rgba(184,148,74,0.4);
+  margin-bottom: 2.5rem;
+  margin-top: 2.5rem;
+}
+.ptab {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.3rem;
+  padding: 0.5rem 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999;
+  border-bottom: 1px solid transparent;
+  margin-bottom: -1px;
+  transition: all 0.25s;
+}
+.ptab.on { color: #B8944A; border-bottom-color: #B8944A; }
+.ptab:hover:not(.on) { color: #1c1814; }
+.port-grid { display: none; grid-template-columns: 1fr 1fr; gap: 1px; }
+.port-grid.on { display: grid; }
+
+.co-card {
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(184,148,74,0.4);
+}
+.co-card:nth-child(odd) { padding-right: 4vw; border-right: 1px solid rgba(184,148,74,0.4); }
+.co-card:nth-child(even) { padding-left: 4vw; }
+.co-stage {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #B8944A;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.co-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #1c1814;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.co-vert {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #999;
+  display: block;
+  margin-bottom: 0.6rem;
+}
+.co-desc {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #555;
+}
+
+/* CTA CHIPS */
+.cta-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+.cta-chip {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #888;
+  border: 1px solid rgba(184,148,74,0.35);
+  padding: 0.3rem 0.8rem;
+}
+
+/* ABOUT / TEAM */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8vw;
+  margin-top: 2.5rem;
+  align-items: start;
+}
+
+.about-thesis p {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: #1c1814;
+  margin-bottom: 1.2rem;
+}
+
+.team-list { display: flex; flex-direction: column; }
+
+.team-row {
+  padding: 1.4rem 0;
+  border-top: 1px solid rgba(184,148,74,0.4);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 2rem;
+}
+.team-row:last-child { border-bottom: 1px solid rgba(184,148,74,0.4); }
+
+.team-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #B8944A;
+}
+
+.team-role {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #888;
+}
+
+/* PORTFOLIO */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-top: 2.5rem;
+  border: 1px solid rgba(184,148,74,0.4);
+}
+
+.port-card {
+  padding: 2rem;
+  border-right: 1px solid rgba(184,148,74,0.4);
+}
+.port-card:last-child { border-right: none; }
+
+.port-stage {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #B8944A;
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.port-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #1c1814;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.port-desc {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: #666;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid rgba(184,148,74,0.4);
+  padding: 2rem 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #B8944A;
+}
+
+.footer-copy { font-size: 0.65rem; letter-spacing: 0.08em; color: #aaa; }
+
+.fade {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade.vis { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 860px) {
+  .arm-block, .syndicate-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .vert-row { grid-template-columns: 1fr; gap: 0.4rem; }
+  .f-row { grid-template-columns: 1fr; }
+  .hero-meta { flex-wrap: wrap; gap: 2rem; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#">Sifr Capital</a>
+  <div class="nav-links">
+    <a class="nav-link" href="#about">About</a>
+    <a class="nav-link" href="#physicians">Physicians</a>
+    <a class="nav-link" href="#platform">Platform</a>
+    <a class="nav-link" href="#portfolio">Portfolio</a>
+    <a class="nav-link" href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-kicker fade">Venture Platform · Life Sciences · Deep Technology</span>
+  <h1 class="fade">From <em>zero</em><br>to frontier.</h1>
+  <p class="hero-body fade">Sifr Capital builds and backs companies at the intersection of life sciences, deep technology, and planetary resilience — de-risking the science and the capital, from lab bench to first-in-human.</p>
+  <div class="hero-meta fade">
+    <div class="meta-item">
+      <span class="val">30K</span>
+      <span class="key">Lab footprint</span>
+      <span class="sub">sq ft · GLP-compliant · in-house</span>
+    </div>
+    <div class="meta-item">
+      <span class="val">$13T</span>
+      <span class="key">Addressable market</span>
+      <span class="sub">Combined across verticals by 2035</span>
+    </div>
+    <div class="meta-item">
+      <span class="val">$500K–$5M</span>
+      <span class="key">Check size</span>
+      <span class="sub">Series A+, co-invested alongside the family office</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / THESIS -->
+<section class="section" id="about">
+  <span class="section-label fade">Thesis</span>
+  <div class="about-grid">
+    <div class="about-thesis fade">
+      <h2>Capital alone<br>is <em>insufficient</em>.</h2>
+      <p>VC returns in life sciences and deep tech have underperformed since 2022. Life sciences deals and exits have fallen to decade lows. CRO price gouging and delays have pushed early validation outside the US.</p>
+      <p>Sifr was built to close this gap — not by writing bigger checks, but by doing the work.</p>
+    </div>
+    <div class="synd-items fade">
+      <div class="synd-row">
+        <span class="synd-n">01</span>
+        <div>
+          <h4>Operate alongside inventors</h4>
+          <p>Sifr partners exclusively with research labs and clinical institutions. We embed operators at the company level from day one — not as advisors, but as builders.</p>
+        </div>
+      </div>
+      <div class="synd-row">
+        <span class="synd-n">02</span>
+        <div>
+          <h4>Eliminate intermediaries</h4>
+          <p>In-house lab facilities execute technical and early clinical work internally — removing the CRO layer that bleeds capital and extends timelines.</p>
+        </div>
+      </div>
+      <div class="synd-row">
+        <span class="synd-n">03</span>
+        <div>
+          <h4>Fail fast, iterate deliberately</h4>
+          <p>Milestone-based validation before scale. Structure development to generate the right data — not more data — and prevent excessive early burn.</p>
+        </div>
+      </div>
+      <div class="synd-row">
+        <span class="synd-n">04</span>
+        <div>
+          <h4>Capital follows conviction</h4>
+          <p>Targeted SPVs advance validation at each milestone. No blind pools, no management fees. Capital deployed with precision against de-risked assets.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHYSICIAN SYNDICATE -->
+<section class="section" id="physicians">
+  <span class="section-label fade">Physician Syndicate</span>
+  <div class="syndicate-grid">
+    <div class="syndicate-left fade">
+      <h2>A seat at<br>the <em>table</em>.</h2>
+      <p>We are building a physician syndicate to give physicians direct access to our deals and a genuine working role in the companies we back. Deal by deal, no blind pool.</p>
+    </div>
+    <div class="synd-items fade">
+      <div class="synd-row">
+        <span class="synd-n">01</span>
+        <div>
+          <h4>Direct deal access</h4>
+          <p>Deal-by-deal participation through targeted SPVs. No commitment to a fund.</p>
+        </div>
+      </div>
+      <div class="synd-row">
+        <span class="synd-n">02</span>
+        <div>
+          <h4>Governance roles</h4>
+          <p>Syndicate members have the opportunity to step into board seats and advisory positions within portfolio companies.</p>
+        </div>
+      </div>
+      <div class="synd-row">
+        <span class="synd-n">03</span>
+        <div>
+          <h4>Clinical strategy</h4>
+          <p>Help founders navigate reimbursement, trial design, and clinical positioning from the start.</p>
+        </div>
+      </div>
+      <div class="synd-row">
+        <span class="synd-n">04</span>
+        <div>
+          <h4>Aligned economics</h4>
+          <p>Capital deployed alongside the Sifr team and the family office on every deal.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section class="section" id="platform">
+  <span class="section-label fade">Platform</span>
+
+  <div class="arm-block fade">
+    <div>
+      <span class="arm-label">Arm I</span>
+      <h3>Company Creation<br>and Incubation</h3>
+    </div>
+    <div class="arm-body">
+      <p>We partner exclusively with research labs and clinical institutions — spinning out technologies, de-risking the early science in our own GLP-compliant facilities, and building from first principles. Sifr operators embed at the company level as founders, not advisors.</p>
+      <ul class="arm-list">
+        <li>Development roadmap and regulatory pathway design</li>
+        <li>PK/PD, biomarker strategy, preclinical architecture</li>
+        <li>IP licensing, patent strategy, clean cap table design</li>
+        <li>Lab partnerships and CRO / clinical coordination</li>
+        <li>Active operator roles: CSO, CMO, Board</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="arm-block fade">
+    <div>
+      <span class="arm-label">Arm II</span>
+      <h3>SPV-Based<br>Strategic Investments</h3>
+    </div>
+    <div class="arm-body">
+      <p>Selective capital. Deal-by-deal discipline. We lead financings for portfolio companies and selectively back external opportunities at Series A and beyond — technically validated platforms only, with a board seat on every deal.</p>
+      <ul class="arm-list">
+        <li>Anchor capital and lead financings for incubated companies</li>
+        <li>External investments from Series A onward</li>
+        <li>$500K to $5M per deal, co-invested alongside the family office</li>
+        <li>One-time organizational fee — no blind-pool management fees</li>
+        <li>Performance-based carry exclusively</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-top:2.5rem; border-top:1px solid rgba(184,148,74,0.4); padding-top:2.5rem;" class="fade">
+    <span class="section-label" style="margin-bottom:1.5rem;">Verticals</span>
+    <div class="vert-list" style="margin-top:0;">
+      <div class="vert-row">
+        <span class="vert-name">Healthcare and<br>Life Sciences</span>
+        <div><span class="vert-items">Drugs · Devices · Diagnostics · Neurotech · Longevity · Research tools</span><br><span style="font-size:0.78rem;color:#B8944A;letter-spacing:0.1em;margin-top:0.4rem;display:inline-block;">~$9T by 2035</span></div>
+      </div>
+      <div class="vert-row">
+        <span class="vert-name">Deep<br>Technology</span>
+        <div><span class="vert-items">AI applied to biology · Synthetic biology · Quantum computing · Robotics</span><br><span style="font-size:0.78rem;color:#B8944A;letter-spacing:0.1em;margin-top:0.4rem;display:inline-block;">~$1T by 2035</span></div>
+      </div>
+      <div class="vert-row">
+        <span class="vert-name">Planetary<br>Health</span>
+        <div><span class="vert-items">Defense · Aerospace biotech · Energy · Critical minerals · Agriculture · Environmental services</span><br><span style="font-size:0.78rem;color:#B8944A;letter-spacing:0.1em;margin-top:0.4rem;display:inline-block;">~$3T by 2033</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="section" id="portfolio">
+  <span class="section-label fade">Portfolio</span>
+  <h2 class="fade">What we are <em>building</em>.</h2>
+  <div class="port-tabs fade">
+    <button class="ptab on" onclick="portTab('incubation',this)">Incubation</button>
+    <button class="ptab" onclick="portTab('investments',this)">Investments</button>
+  </div>
+  <div id="incubation" class="port-grid on fade">
+    <div class="co-card">
+      <span class="co-stage">Incubating</span>
+      <span class="co-name">Autoimmune Therapeutics</span>
+      <span class="co-vert">Healthcare · Therapeutics</span>
+      <p class="co-desc">Bispecific antibody targeting ARID3a⁺ B cells for lupus and related autoimmune diseases.</p>
+    </div>
+    <div class="co-card">
+      <span class="co-stage">Incubating</span>
+      <span class="co-name">Mitargos</span>
+      <span class="co-vert">Healthcare · Mitochondrial Therapeutics</span>
+      <p class="co-desc">Therapeutic platform restoring brain energy via mitochondrial bioenergetics.</p>
+    </div>
+    <div class="co-card">
+      <span class="co-stage">Incubating</span>
+      <span class="co-name">MiDrive</span>
+      <span class="co-vert">Healthcare · Metabolic & Cognitive Platform</span>
+      <p class="co-desc">Functional beverage platform generating human metabolic and cognitive data to support Mitargos' therapeutic development and licensing strategy.</p>
+    </div>
+    <div class="co-card">
+      <span class="co-stage">Incubating</span>
+      <span class="co-name">PlasticMind</span>
+      <span class="co-vert">Deep Tech · Precision Neurotherapeutics</span>
+      <p class="co-desc">AI-driven precision dosing platform enabling personalized, data-guided treatment across mental health and neurotherapeutics.</p>
+    </div>
+  </div>
+  <div id="investments" class="port-grid fade">
+    <div class="co-card">
+      <span class="co-stage">Series A1 · Investment</span>
+      <span class="co-name">Gilgamesh Pharmaceuticals</span>
+      <span class="co-vert">Healthcare · Neuropsychiatry</span>
+      <p class="co-desc">Novel psychedelic-inspired small molecule therapeutics targeting treatment-resistant psychiatric conditions.</p>
+    </div>
+    <div class="co-card">
+      <span class="co-stage">Seed · Investment</span>
+      <span class="co-name">Neurosoft Bioelectronics</span>
+      <span class="co-vert">Healthcare · Neurotech · Medical Devices</span>
+      <p class="co-desc">Soft, flexible bioelectronic neural interfaces engineered for long-term implantation with minimal tissue response.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <span class="section-label fade">Contact</span>
+  <h2 class="fade">Get in<br><em>touch</em>.</h2>
+  <p class="contact-sub fade">For investors, physicians, and founders. All inquiries reviewed in confidence.</p>
+  <div class="cta-chips fade">
+    <span class="cta-chip">Deal-by-deal SPVs</span>
+    <span class="cta-chip">Performance carry only</span>
+    <span class="cta-chip">Via Sydecar</span>
+    <span class="cta-chip">Accepting introductions</span>
+  </div>
+  <div class="contact-form fade">
+    <div class="f-row">
+      <div class="f-group">
+        <label class="f-label">Name</label>
+        <input type="text" class="f-input" placeholder="Full name"/>
+      </div>
+      <div class="f-group">
+        <label class="f-label">Email</label>
+        <input type="email" class="f-input" placeholder="you@domain.com"/>
+      </div>
+    </div>
+    <div class="f-row">
+      <div class="f-group">
+        <label class="f-label">I am a</label>
+        <select class="f-select">
+          <option value="">Select...</option>
+          <option>Investor / Family Office</option>
+          <option>Physician</option>
+          <option>Founder</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="f-group">
+        <label class="f-label">Specialty or firm</label>
+        <input type="text" class="f-input" placeholder="Specialty or firm"/>
+      </div>
+    </div>
+    <div class="f-group">
+      <label class="f-label">Message</label>
+      <textarea class="f-textarea" placeholder="What brings you here?"></textarea>
+    </div>
+    <button class="f-submit" id="submitBtn" onclick="handleSubmit(event)">Send</button>
+    <p class="f-note">We respond within five business days.</p>
+    <div class="form-success" id="formSuccess">Message received. We will be in touch shortly.</div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="footer-logo">Sifr Capital</div>
+    <div style="font-size:0.68rem;letter-spacing:0.1em;color:#aaa;margin-top:0.3rem;">صفر · ṣifr · zero — the origin of algebra, algorithm, cipher</div>
+  </div>
+  <div class="footer-copy">© 2026 Sifr Capital · Confidential</div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('vis'), i * 60);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.05 });
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+function portTab(id, btn) {
+  document.querySelectorAll('.port-grid').forEach(g => g.classList.remove('on'));
+  document.querySelectorAll('.ptab').forEach(b => b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = 'Sent';
+  btn.disabled = true;
+  btn.style.background = '#ccc';
+  document.getElementById('formSuccess').style.display = 'block';
+}
+</script>
+</body>
+</html>
