@@ -339,6 +339,46 @@ h2 em { font-style: italic; }
   line-height: 1.7;
 }
 
+.f-upload-group {
+  display: none;
+}
+.f-upload-group.visible {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.f-file-zone {
+  border: 1px dashed rgba(184,148,74,0.5);
+  padding: 1.6rem;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.2s, background 0.2s;
+}
+.f-file-zone:hover {
+  border-color: #B8944A;
+  background: rgba(184,148,74,0.03);
+}
+.f-file-zone input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+.f-file-text {
+  font-size: 0.82rem;
+  color: #999;
+  display: block;
+}
+.f-file-chosen {
+  font-size: 0.82rem;
+  color: #B8944A;
+  margin-top: 0.4rem;
+  display: none;
+}
+
 .form-success {
   display: none;
   text-align: center;
@@ -788,7 +828,7 @@ footer {
     <div class="f-row">
       <div class="f-group">
         <label class="f-label">I am a</label>
-        <select class="f-select">
+        <select class="f-select" id="roleSelect" onchange="handleRoleChange(this)">
           <option value="">Select...</option>
           <option>Investor / Family Office</option>
           <option>Physician</option>
@@ -799,6 +839,14 @@ footer {
       <div class="f-group">
         <label class="f-label">Specialty or firm</label>
         <input type="text" class="f-input" placeholder="Specialty or firm"/>
+      </div>
+    </div>
+    <div class="f-upload-group" id="deckUploadGroup">
+      <label class="f-label">Pitch deck <span style="color:#B8944A;">*</span></label>
+      <div class="f-file-zone" id="deckZone">
+        <input type="file" id="deckInput" accept=".pdf,.pptx,.ppt" onchange="handleDeckFile(this)"/>
+        <span class="f-file-text">Upload pitch deck · PDF or PowerPoint · max 20MB</span>
+        <span class="f-file-chosen" id="deckFileName"></span>
       </div>
     </div>
     <div class="f-group">
@@ -837,8 +885,39 @@ function portTab(id, btn) {
   btn.classList.add('on');
 }
 
+function handleRoleChange(sel) {
+  const group = document.getElementById('deckUploadGroup');
+  const input = document.getElementById('deckInput');
+  if (sel.value === 'Founder') {
+    group.classList.add('visible');
+    input.required = true;
+  } else {
+    group.classList.remove('visible');
+    input.required = false;
+    input.value = '';
+    document.getElementById('deckFileName').style.display = 'none';
+    document.getElementById('deckFileName').textContent = '';
+  }
+}
+
+function handleDeckFile(input) {
+  if (input.files[0]) {
+    const label = document.getElementById('deckFileName');
+    label.textContent = input.files[0].name;
+    label.style.display = 'block';
+    document.querySelector('.f-file-text').textContent = 'File selected';
+  }
+}
+
 function handleSubmit(e) {
   e.preventDefault();
+  const role = document.getElementById('roleSelect').value;
+  const deckInput = document.getElementById('deckInput');
+  if (role === 'Founder' && !deckInput.files.length) {
+    document.getElementById('deckZone').style.borderColor = '#c0392b';
+    deckInput.focus();
+    return;
+  }
   const btn = document.getElementById('submitBtn');
   btn.textContent = 'Sent';
   btn.disabled = true;
